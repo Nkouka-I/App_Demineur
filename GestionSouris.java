@@ -14,8 +14,7 @@ public class GestionSouris implements MouseListener{
 			case_en_cours.reveler();       /* cette ligne permet de reveler la case il faut coder la fonction dans case.*/
 		}
 		else if(e.getButton()==MouseEvent.BUTTON3){
-			case_en_cours./*a voir*/
-		}
+			case_en_cours.		}
 	}
 
 	/* a continuer toutes les méthodes pour les graphismes*/
