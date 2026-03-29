@@ -1,22 +1,20 @@
+public class GestionSouris extends MouseAdapter {
+	Cases caseEcoutee
 
-
-
-public class GestionSouris implements MouseListener{
-	private Cases case_en_cours;
-
-
-	public GestionSouris(Cases case_en_cours){
-		this.case_en_cours=case_en_cours;
-	}
-	@Override
-	public void mouseClicked(MouseEvent e){
-		if (e.getButton()==MouseEvent.BUTTON1){
-			case_en_cours.reveler();       /* cette ligne permet de reveler la case il faut coder la fonction dans case.*/
-		}
-		else if(e.getButton()==MouseEvent.BUTTON3){
-			case_en_cours.		}
+	public GestionSouris(Cases caseEcoutee , Grille grille){
+		this.caseEcoutee=caseEcoutee;
 	}
 
-	/* a continuer toutes les méthodes pour les graphismes*/
+    @Override
+    public void mouseClicked(MouseEvent evenement) {
+        if (evenement.getButton() == MouseEvent.BUTTON1) {
+            grille.reveleCase(caseEcoutee.x, caseEcoutee.y);
+
+        } else if (evenement.getButton() == MouseEvent.BUTTON3) {
+            if (!caseEcoutee.visibilite) {
+                caseEcoutee.etatMarqueur = (caseEcoutee.etatMarqueur + 1) % 3;
+            }
+        }
+    }
 }
 

@@ -16,6 +16,7 @@ public class Grille {
 		for (int i=0;i<lignes;i++){
 			for (int y=0;y<colonnes;y++){
 				cases[i][y]= new Cases(i,y);
+				cases[i][y].addMouseAdapter(new GestionSouris(cases[i][y],this));
 			}
 		}
 
