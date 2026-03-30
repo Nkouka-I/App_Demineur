@@ -10,6 +10,7 @@ public class Grille {
 		this.colonnes=colonnes;
 		this.cases=new Cases([lignes][colonnes]);
 		initCases();
+		initMines();
 
 	}
 	public void initCases(){
