@@ -8,7 +8,7 @@ public class Grille {
 	public Grille(int lignes,int colonnes){
 		this.lignes=lignes;
 		this.colonnes=colonnes;
-		this.cases=new Cases([lignes][colonnes]);
+		this.cases=new Cases([lignes],[colonnes]);
 		initCases();
 		initMines();
 
@@ -22,7 +22,7 @@ public class Grille {
 		}
 
 	}
-	public void initMines(int nbmines){
+	public void initMines(){
 		Random rand=new Random();
 		int poser=0;
 		while (poser<nbmines){
@@ -35,6 +35,53 @@ public class Grille {
 		}
 
 	}
+
+	public void calculMinesV(){
+		for (int i=0;i<lignes;i++){
+			for (int y=0;y<colonnes;i++){
+				int cpt=0;
+
+				for (int u=-1;u<=1;u++){
+					for (int v=-1;v<=1;v++){
+						int voisinI=i+u;
+						int voisinY=y+v;
+
+						if ((voisinI>=0 && voisinI<lignes) && (voisinY>=0 && voisinY<colonnes)){
+							if (cases[voisinI][voisinY].estminee){
+								cpt++;
+							}
+						}
+					}
+				}
+			}cases[i][j].nbminesV=cpt;
+		}
+
+	}
+
+	public void reveleBombes(){
+		for (int i=0;i<lignes;i++){
+			for(int j=0;j<colonnes;j++){
+				if (cases[i][j].estminee){
+					cases[i][j].visibilite=true;
+					cases[i][j].mettreAjourAffichage();
+				}
+			}
+		}
+	}
+
+	public boolean verifVictoire(){
+		for (int i=0;i<lignes;i++){
+			for (int y=0;y<colonnes;y++){
+				if (cases[i][j].estminee==false && cases[i][j].visibilite==false){
+					return false;
+				}
+			}
+		}return true;
+	}
+
+
+
+
 	public void reveleCase(int x,int y){
 		cases[x][y].visibilite=true;
 	}

@@ -14,7 +14,7 @@ public class Cases extends JButton{
 
 
 
-	public cases(int x,int y){
+	public Cases(int x,int y){
 		this.estminee=false;
 		this.nbminesV=0;
 		this.visibilite=false;
@@ -23,7 +23,7 @@ public class Cases extends JButton{
 		this.y=y;
 		setPreferredSize(new Dimension(40,40));
 	}
-	public cases getcase(){
+	public Cases getcase(){
 		return this;
 	}
 	public void mettreAjourAffichage(){
@@ -45,33 +45,33 @@ public class Cases extends JButton{
 				setText("bombe");
 				setBackground(Color.RED);
 			}
-		setBackground(Color.GREY);
+		setBackground(new Color(128,128,128));
 		if (nbminesV==0){
-			setText("")
+			setText("");
 		}else if(nbminesV==1){
 			setText("1");
 			setForeground(Color.BLUE);
 		}else if(nbminesV==2){
 			setText("2");
-			setForeground(Color.BLUE);
+			setForeground(new Color(0,128,0));
 		}else if(nbminesV==3){
 			setText("3");
-			setForeground(Color.BLUE);
+			setForeground(Color.RED);
 		}else if(nbminesV==4){
 			setText("4");
-			setForeground(Color.BLUE);
+			setForeground(new Color(0,0,128));
 		}else if(nbminesV==5){
 			setText("5");
-			setForeground(Color.BLUE);  /* A CHANGER LES COULZURS*/
+			setForeground(new Color(128,0,0));
 		}else if(nbminesV==6){
 			setText("6");
-			setForeground(Color.BLUE);
+			setForeground(new Color(0,128,128));
 		}else if(nbminesV==7){
 			setText("7");
-			setForeground(Color.BLUE);
+			setForeground(Color.BLACK);
 		}else if(nbminesV==8){
 			setText("8");
-			setForeground(Color.BLUE);
+			setForeground(new Color(128,128,128));
 		}
 
 
@@ -86,4 +86,3 @@ public class Cases extends JButton{
 
 
 
-}
