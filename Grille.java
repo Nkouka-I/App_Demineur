@@ -1,4 +1,7 @@
-import java.util.random;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import java.awt.GridLayout;
+import java.util.Random;
 
 public class Grille {
 	private int lignes;
@@ -8,21 +11,22 @@ public class Grille {
 	public Grille(int lignes,int colonnes){
 		this.lignes=lignes;
 		this.colonnes=colonnes;
-		this.cases=new Cases([lignes],[colonnes]);
+		this.cases=new Cases[lignes][colonnes];
 		initCases();
-		initMines();
+	/*	initMines(nbmines); */
+		calculMinesV();
 
 	}
 	public void initCases(){
 		for (int i=0;i<lignes;i++){
 			for (int y=0;y<colonnes;y++){
 				cases[i][y]= new Cases(i,y);
-				cases[i][y].addMouseAdapter(new GestionSouris(cases[i][y],this));
+				cases[i][y].addMouseListener(new GestionSouris(cases[i][y],this));
 			}
 		}
 
 	}
-	public void initMines(){
+	public void initMines(int nbmines){
 		Random rand=new Random();
 		int poser=0;
 		while (poser<nbmines){
@@ -51,9 +55,9 @@ public class Grille {
 								cpt++;
 							}
 						}
-					}
+					}cases[i][y].nbminesV=cpt;
 				}
-			}cases[i][j].nbminesV=cpt;
+			}
 		}
 
 	}
@@ -72,12 +76,24 @@ public class Grille {
 	public boolean verifVictoire(){
 		for (int i=0;i<lignes;i++){
 			for (int y=0;y<colonnes;y++){
-				if (cases[i][j].estminee==false && cases[i][j].visibilite==false){
+				if (cases[i][y].estminee==false && cases[i][y].visibilite==false){
 					return false;
 				}
 			}
 		}return true;
+
 	}
+
+	public JPanel afficherGrille() {
+    	JPanel panel = new JPanel();
+    	panel.setLayout(new GridLayout(lignes, colonnes));
+    	for (int i = 0; i < lignes; i++) {
+        	for (int j = 0; j < colonnes; j++) {
+            	panel.add(cases[i][j]);
+        }
+    }
+    return panel;
+}
 
 
 
