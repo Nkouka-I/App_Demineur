@@ -8,12 +8,12 @@ public class Grille {
 	private int colonnes;
 	private Cases[][] cases;
 
-	public Grille(int lignes,int colonnes){
+	public Grille(int lignes,int colonnes,int nbmines){
 		this.lignes=lignes;
 		this.colonnes=colonnes;
 		this.cases=new Cases[lignes][colonnes];
 		initCases();
-	/*	initMines(nbmines); */
+		initMines(nbmines);
 		calculMinesV();
 
 	}
@@ -42,7 +42,7 @@ public class Grille {
 
 	public void calculMinesV(){
 		for (int i=0;i<lignes;i++){
-			for (int y=0;y<colonnes;i++){
+			for (int y=0;y<colonnes;y++){
 				int cpt=0;
 
 				for (int u=-1;u<=1;u++){
@@ -55,8 +55,8 @@ public class Grille {
 								cpt++;
 							}
 						}
-					}cases[i][y].nbminesV=cpt;
-				}
+					}				
+				}cases[i][y].nbminesV=cpt;
 			}
 		}
 
@@ -95,12 +95,40 @@ public class Grille {
     return panel;
 }
 
+	// méthode récursive qui propage la révélation
+public void propager(int x, int y) {
+
+    // on sort si hors de la grille
+    if (x < 0 || x >= lignes || y < 0 || y >= colonnes) return;
+
+    // on sort si déjà révélée ou minée
+    if (cases[x][y].visibilite || cases[x][y].estminee) return;
+
+    // on révèle la case
+    cases[x][y].visibilite = true;
+    cases[x][y].mettreAjourAffichage();
+
+    // si elle a des mines voisines on s'arrête ici
+    if (cases[x][y].nbminesV > 0) return;
+
+    // si 0 mines voisines → on propage aux 8 voisins
+    for (int u = -1; u <= 1; u++) {
+        for (int v = -1; v <= 1; v++) {
+            if (u != 0 || v != 0) {  // on évite la case elle-même
+                propager(x + u, y + v);
+            }
+        }
+    }
+}
 
 
 
-	public void reveleCase(int x,int y){
-		cases[x][y].visibilite=true;
-	}
+
+	public void reveleCase(int x, int y) {
+    	cases[x][y].visibilite = true;
+    	cases[x][y].mettreAjourAffichage();   
+	}	
+
 	public int getLignes(){
 		return lignes;
 

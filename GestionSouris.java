@@ -9,28 +9,29 @@ public class GestionSouris extends MouseAdapter {
 
 	public GestionSouris(Cases caseEcoutee , Grille grille){
 		this.caseEcoutee=caseEcoutee;
+        this.grille=grille;
 	}
 
-    @Override
-    public void mouseClicked(MouseEvent evenement) {
-        if (evenement.getButton() == MouseEvent.BUTTON1) {
-            grille.reveleCase(caseEcoutee.x, caseEcoutee.y);
-            caseEcoutee.mettreAjourAffichage();
+@Override
+public void mouseReleased(MouseEvent evenement) {
+    if (evenement.getButton() == MouseEvent.BUTTON1) {
+        if (!caseEcoutee.visibilite && caseEcoutee.etatMarqueur == 0) {
 
-            if (caseEcoutee.estminee){
-            	grille.reveleBombes();
-            	JOptionPane.showMessageDialog(null,"perdu");
+            grille.propager(caseEcoutee.x, caseEcoutee.y);  // ← propagation
 
+            if (caseEcoutee.estminee) {
+                grille.reveleBombes();
+                JOptionPane.showMessageDialog(null, "Perdu !");
             }
-            if (grille.verifVictoire()){
-            	JOptionPane.showMessageDialog(null,"Gagné");
-            }
-
-        } else if (evenement.getButton() == MouseEvent.BUTTON3) {
-            if (!caseEcoutee.visibilite) {
-                caseEcoutee.etatMarqueur = (caseEcoutee.etatMarqueur + 1) % 3;
-                caseEcoutee.mettreAjourAffichage();
+            if (grille.verifVictoire()) {
+                JOptionPane.showMessageDialog(null, "Gagné !");
             }
         }
+    } else if (evenement.getButton() == MouseEvent.BUTTON3) {
+        if (!caseEcoutee.visibilite) {
+            caseEcoutee.etatMarqueur = (caseEcoutee.etatMarqueur + 1) % 3;
+            caseEcoutee.mettreAjourAffichage();
+        }
     }
+}
 }

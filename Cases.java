@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Color;
+import java.awt.*;
 
 public class Cases extends JButton{
 	protected boolean estminee;
@@ -22,29 +22,39 @@ public class Cases extends JButton{
 		this.x=x;
 		this.y=y;
 		setPreferredSize(new Dimension(40,40));
+		setFont(new Font("Arial",Font.BOLD,16));
+		setMargin(new Insets(0,0,0,0));
+		  
+   
 	}
 	public Cases getcase(){
 		return this;
 	}
-	public void mettreAjourAffichage(){
-		if (visibilite==false){
-			setBackground(null);
-			if (etatMarqueur==1){
-				setText("");   /* mettre un drapeau*/
-				setForeground(Color.RED);
-			}else if (etatMarqueur==2){
-				setText("?");
-				setForeground(Color.ORANGE);
+public void mettreAjourAffichage() {
+    if (visibilite == false) {
+        setBackground(null);
+        if (etatMarqueur == 1) {
+            setText("⚑");
+            setForeground(Color.RED);
+        } else if (etatMarqueur == 2) {
+            setText("?");
+            setForeground(Color.ORANGE);
+        } else {
+            setText("");
+        }
+        return;  // ← on sort si pas visible
+    }
 
-			}else{
-				setText("");
-			}
-		}
+     
+    setEnabled(true);
+    setFocusPainted(false);
+    setBorderPainted(false);
 
-		if (estminee){
-				setText("bombe");
-				setBackground(Color.RED);
-			}
+    if (estminee) {
+        setText("bombe");
+        setBackground(Color.RED);
+        return;  // ← on sort si mine
+    }
 		setBackground(new Color(128,128,128));
 		if (nbminesV==0){
 			setText("");
