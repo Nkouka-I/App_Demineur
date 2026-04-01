@@ -27,8 +27,11 @@ public class PanneauMenu extends JPanel{
 	    btnReprendre.setPreferredSize(tailleBouton);
 	    btnQuitter.setPreferredSize(tailleBouton);
 
+	    ConsommateurMenu cm = new ConsommateurMenu(this, this.fenetre);
+
 		gbc.gridy = 1;
         this.add(btnNewGame, gbc);
+        btnNewGame.addActionListener(cm);
         
         gbc.gridy = 2;
         this.add(btnReprendre, gbc);
@@ -37,5 +40,8 @@ public class PanneauMenu extends JPanel{
         this.add(btnQuitter, gbc);
 	}
 
+	public JButton getbtnReprendre() { return btnReprendre; }
+	public JButton getBtnNewGame() { return btnNewGame; }
+	public JButton getbBtnQuitter() { return btnQuitter; }
 
 }

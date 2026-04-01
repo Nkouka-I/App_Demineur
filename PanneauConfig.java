@@ -9,9 +9,9 @@ public class PanneauConfig extends JPanel{
 	private JButton btnPlusColonnes = new JButton("+");
 	private JButton btnMoinsColonnes = new JButton("-");
 	private JButton btnValider = new JButton("Valider");
-	private JLabel texteLignes = new JLabel("Lignes : ");
-	private JLabel texteColonnes = new JLabel("Colonnes : ");
-	private int l, c;
+	protected int l = 4, c = 4;
+	private JLabel texteLignes = new JLabel("Lignes : " + l);
+	private JLabel texteColonnes = new JLabel("Colonnes : " + c);
 
 	public PanneauConfig(FenetrePrincipal fenetre){
 		this.fenetre = fenetre;
@@ -39,7 +39,26 @@ public class PanneauConfig extends JPanel{
 
 		gbc.gridx = 2;
 		this.add(btnPlusColonnes, gbc);
+
+		gbc.gridy = 2;
+		this.add(btnValider, gbc);
+
+		ConsommateurConfig cc = new ConsommateurConfig(this);
+		btnPlusLignes.addActionListener(cc);
+		btnMoinsLignes.addActionListener(cc);
+		btnPlusColonnes.addActionListener(cc);
+		btnMoinsColonnes.addActionListener(cc);
 	}
 
+	public JButton getBtnPlusLignes() { return btnPlusLignes; }
+	public JButton getBtnMoinsLignes() { return btnMoinsLignes; }
+	public JButton getBtnPlusColonnes() { return btnPlusColonnes; }
+	public JButton getBtnMoinsColonnes() { return btnMoinsColonnes; }
+
+	public void mettreAJourTexte(int l, int c){
+		this.texteLignes.setText("Lignes : " + l);
+    	this.texteColonnes.setText("Colonnes : " + c);
+	}
+	public int getColonnes() { return }
 
 }

@@ -20,6 +20,14 @@ public class FenetrePrincipal extends JFrame{
         this.setVisible(true);
     }
 
+    public void afficherConfig() {
+        this.getContentPane().removeAll(); //Tableau Blanc
+        this.add(new PanneauConfig(this));   //Ajout Menu
+        this.revalidate();                 //Redimention LayoutManager
+        this.repaint();                    //Rafraîchissement
+        this.pack();
+    }
+
     /*public void afficherJeu(int lignes, int colonnes) {
         this.getContentPane().removeAll();
         this.add(new PanneauJeu(this, lignes, colonnes));
