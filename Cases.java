@@ -9,6 +9,7 @@ public class Cases extends JButton{
 	protected int etatMarqueur;
 	protected int x;
 	protected int y;
+	private static final Color[] couleurs ={Color.BLUE,new Color(0,128,0),Color.RED,new Color(0,0,128),new Color(128,0,0),new Color(0,128,128),Color.BLACK,new Color(128,128,128)};
 
 	
 
@@ -58,32 +59,10 @@ public void mettreAjourAffichage() {
 		setBackground(new Color(128,128,128));
 		if (nbminesV==0){
 			setText("");
-		}else if(nbminesV==1){
-			setText("1");
-			setForeground(Color.BLUE);
-		}else if(nbminesV==2){
-			setText("2");
-			setForeground(new Color(0,128,0));
-		}else if(nbminesV==3){
-			setText("3");
-			setForeground(Color.RED);
-		}else if(nbminesV==4){
-			setText("4");
-			setForeground(new Color(0,0,128));
-		}else if(nbminesV==5){
-			setText("5");
-			setForeground(new Color(128,0,0));
-		}else if(nbminesV==6){
-			setText("6");
-			setForeground(new Color(0,128,128));
-		}else if(nbminesV==7){
-			setText("7");
-			setForeground(Color.BLACK);
-		}else if(nbminesV==8){
-			setText("8");
-			setForeground(new Color(128,128,128));
+		}else{
+			setText(String.valueOf(nbminesV));		
+			setForeground(couleurs[nbminesV-1]);
 		}
-
 
 
 	
