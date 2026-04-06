@@ -18,6 +18,8 @@ public class ConsommateurMenu implements ActionListener{
 
         if (source == panneau.getBtnNewGame()) {
             this.fenetre.afficherConfig();
+        }else if(source == panneau.getBtnQuitter()){
+            System.exit(0);
         }
     }
 }

@@ -40,25 +40,29 @@ public class PanneauConfig extends JPanel{
 		gbc.gridx = 2;
 		this.add(btnPlusColonnes, gbc);
 
+		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.gridy = 2;
+		gbc.gridx = 0;
+		gbc.gridwidth = 3;
 		this.add(btnValider, gbc);
 
-		ConsommateurConfig cc = new ConsommateurConfig(this);
+		ConsommateurConfig cc = new ConsommateurConfig(this, this.fenetre);
 		btnPlusLignes.addActionListener(cc);
 		btnMoinsLignes.addActionListener(cc);
 		btnPlusColonnes.addActionListener(cc);
 		btnMoinsColonnes.addActionListener(cc);
+		btnValider.addActionListener(cc);
 	}
 
 	public JButton getBtnPlusLignes() { return btnPlusLignes; }
 	public JButton getBtnMoinsLignes() { return btnMoinsLignes; }
 	public JButton getBtnPlusColonnes() { return btnPlusColonnes; }
 	public JButton getBtnMoinsColonnes() { return btnMoinsColonnes; }
+	public JButton getbtnValider() { return btnValider; }
 
 	public void mettreAJourTexte(int l, int c){
 		this.texteLignes.setText("Lignes : " + l);
     	this.texteColonnes.setText("Colonnes : " + c);
 	}
-	public int getColonnes() { return }
 
 }

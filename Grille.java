@@ -121,9 +121,6 @@ public void propager(int x, int y) {
     }
 }
 
-
-
-
 	public void reveleCase(int x, int y) {
     	cases[x][y].visibilite = true;
     	cases[x][y].mettreAjourAffichage();   
@@ -136,8 +133,6 @@ public void propager(int x, int y) {
 	public int getcolonnes(){
 		return colonnes;
 	}
-
-
-	}
+}
 
 

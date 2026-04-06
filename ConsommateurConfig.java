@@ -4,11 +4,13 @@ import java.awt.event.*;
 
 public class ConsommateurConfig implements ActionListener{
 	private PanneauConfig panneau;
+    private FenetrePrincipal fenetre;
     private int nbLignes = 4, nbColonnes = 4;
 
-	public ConsommateurConfig(PanneauConfig panneau) {
+	public ConsommateurConfig(PanneauConfig panneau, FenetrePrincipal fenetre) {
         super();
         this.panneau = panneau;
+        this.fenetre = fenetre;
     }
 
     @Override
@@ -24,6 +26,9 @@ public class ConsommateurConfig implements ActionListener{
             if (nbColonnes < 30) nbColonnes++;                  // Sécurité pour pas avoir plus de 30 lignes
         } else if (source == panneau.getBtnMoinsColonnes()) {
             if (nbColonnes > 4) nbColonnes--;                   // Sécurité pour pas avoir moins de 4 lignes
+        }
+        if (source == panneau.getbtnValider()) {
+            this.fenetre.afficherJeu(this.nbLignes, this.nbColonnes);
         }
 
         panneau.mettreAJourTexte(nbLignes, nbColonnes);

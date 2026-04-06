@@ -38,10 +38,11 @@ public class PanneauMenu extends JPanel{
         
         gbc.gridy = 3;
         this.add(btnQuitter, gbc);
+		btnQuitter.addActionListener(cm);
 	}
 
-	public JButton getbtnReprendre() { return btnReprendre; }
+	public JButton getBtnReprendre() { return btnReprendre; }
 	public JButton getBtnNewGame() { return btnNewGame; }
-	public JButton getbBtnQuitter() { return btnQuitter; }
+	public JButton getBtnQuitter() { return btnQuitter; }
 
 }

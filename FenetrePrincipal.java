@@ -28,11 +28,11 @@ public class FenetrePrincipal extends JFrame{
         this.pack();
     }
 
-    /*public void afficherJeu(int lignes, int colonnes) {
+    public void afficherJeu(int lignes, int colonnes) {
         this.getContentPane().removeAll();
         this.add(new PanneauJeu(this, lignes, colonnes));
         this.revalidate();
         this.repaint();
         this.pack();
-    }*/
+    }
 }
