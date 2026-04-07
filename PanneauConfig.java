@@ -4,23 +4,38 @@ import java.awt.*;
 public class PanneauConfig extends JPanel{
 	private FenetrePrincipal fenetre;
 
-	private JButton btnPlusLignes = new JButton("+");
-	private JButton btnMoinsLignes = new JButton("-");
-	private JButton btnPlusColonnes = new JButton("+");
-	private JButton btnMoinsColonnes = new JButton("-");
-	private JButton btnPlusMines = new JButton("+");
-	private JButton btnMoinsMines = new JButton("-");
-	private JButton btnValider = new JButton("Valider");
+	private BoutonMenu btnPlusLignes;
+	private BoutonMenu btnMoinsLignes;
+	private BoutonMenu btnPlusColonnes;
+	private BoutonMenu btnMoinsColonnes;
+	private BoutonMenu btnPlusMines;
+	private BoutonMenu btnMoinsMines;
+	private BoutonMenu btnValider;
 	protected int l = 4, c = 4, m = 2;
-	private JLabel texteLignes = new JLabel("Lignes : " + l);
-	private JLabel texteColonnes = new JLabel("Colonnes : " + c);
-	private JLabel texteMines = new JLabel("Mines : " + m);
+	private JLabel texteLignes;
+	private JLabel texteColonnes;
+	private JLabel texteMines;
 
 	public PanneauConfig(FenetrePrincipal fenetre){
 		this.fenetre = fenetre;
-
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		this.setBackground(Style.SABLE_BASE);
+
+		//Init Boutons
+		int btnl = 50, btnh = 50;
+		btnPlusLignes = new BoutonMenu("+", btnl, btnh, true);
+		btnMoinsLignes = new BoutonMenu("-", btnl, btnh, true);
+		btnPlusColonnes = new BoutonMenu("+", btnl, btnh, false);
+		btnMoinsColonnes = new BoutonMenu("-", btnl, btnh, false);
+		btnPlusMines = new BoutonMenu("+", btnl, btnh, true);
+		btnMoinsMines = new BoutonMenu("-", btnl, btnh, true);
+		btnValider = new BoutonMenu("Valider", 100, btnh, false);
+
+		//Init Texte
+		texteLignes = new JLabel("Lignes : " + l);
+		texteColonnes = new JLabel("Colonnes : " + c);
+		texteMines = new JLabel("Mines : " + m);
 
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.gridy = 0;
