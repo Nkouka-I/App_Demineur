@@ -23,7 +23,7 @@ public class PanneauJeu extends JPanel{
         panneauHaut.add(labelCoups);
         add(panneauHaut, BorderLayout.NORTH);
 
-        grille = new Grille(lignes, colonnes, mines);
+        grille = new Grille(lignes, colonnes, mines,this);
         add(grille.afficherGrille(), BorderLayout.CENTER);
 
     }  
@@ -37,5 +37,8 @@ public class PanneauJeu extends JPanel{
     public void mettreAjourMines(int delta) {
         mines += delta; 
         labelMines.setText("Mines restantes : " + mines);
+    }
+    public FenetrePrincipal getFenetrePrincipal(){
+        return this.fenetre;
     }
 }

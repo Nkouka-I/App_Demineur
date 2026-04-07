@@ -9,7 +9,7 @@ public class Grille extends JPanel {
 	private Cases[][] cases;
 	private PanneauJeu fenetre;
 
-	public Grille(int lignes,int colonnes,int nbmines){
+	public Grille(int lignes,int colonnes,int nbmines,PanneauJeu fenetre){
 		this.fenetre=fenetre;
 		this.lignes=lignes;
 		this.colonnes=colonnes;

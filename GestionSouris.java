@@ -23,9 +23,11 @@ public void mouseReleased(MouseEvent evenement) {
             if (caseEcoutee.estminee) {
                 grille.reveleBombes();
                 JOptionPane.showMessageDialog(null, "Perdu !");
+                grille.getFenetre().getFenetrePrincipal().afficherMenu();
             }
             if (grille.verifVictoire()) {
                 JOptionPane.showMessageDialog(null, "Gagné !");
+                grille.getFenetre().getFenetrePrincipal().afficherMenu();
             }
         }
     } else if (evenement.getButton() == MouseEvent.BUTTON3) {
