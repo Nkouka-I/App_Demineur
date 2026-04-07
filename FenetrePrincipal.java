@@ -28,9 +28,9 @@ public class FenetrePrincipal extends JFrame{
         this.pack();
     }
 
-    public void afficherJeu(int lignes, int colonnes) {
+    public void afficherJeu(int lignes, int colonnes, int mines) {
         this.getContentPane().removeAll();
-        this.add(new PanneauJeu(this, lignes, colonnes));
+        this.add(new PanneauJeu(this, lignes, colonnes, mines));
         this.revalidate();
         this.repaint();
         this.pack();

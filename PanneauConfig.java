@@ -8,10 +8,13 @@ public class PanneauConfig extends JPanel{
 	private JButton btnMoinsLignes = new JButton("-");
 	private JButton btnPlusColonnes = new JButton("+");
 	private JButton btnMoinsColonnes = new JButton("-");
+	private JButton btnPlusMines = new JButton("+");
+	private JButton btnMoinsMines = new JButton("-");
 	private JButton btnValider = new JButton("Valider");
-	protected int l = 4, c = 4;
+	protected int l = 4, c = 4, m = 2;
 	private JLabel texteLignes = new JLabel("Lignes : " + l);
 	private JLabel texteColonnes = new JLabel("Colonnes : " + c);
+	private JLabel texteMines = new JLabel("Mines : " + m);
 
 	public PanneauConfig(FenetrePrincipal fenetre){
 		this.fenetre = fenetre;
@@ -40,29 +43,45 @@ public class PanneauConfig extends JPanel{
 		gbc.gridx = 2;
 		this.add(btnPlusColonnes, gbc);
 
-		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.gridy = 2;
+		gbc.gridx = 0;						   			 
+		this.add(btnMoinsMines, gbc);
+
+		gbc.gridx = 1;
+		this.add(texteMines, gbc);
+
+		gbc.gridx = 2;
+		this.add(btnPlusMines, gbc);
+
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.gridy = 3;
 		gbc.gridx = 0;
 		gbc.gridwidth = 3;
 		this.add(btnValider, gbc);
 
-		ConsommateurConfig cc = new ConsommateurConfig(this, this.fenetre);
+		ConsommateurConfig cc = new ConsommateurConfig(this, this.fenetre, l, c, m);
 		btnPlusLignes.addActionListener(cc);
 		btnMoinsLignes.addActionListener(cc);
 		btnPlusColonnes.addActionListener(cc);
 		btnMoinsColonnes.addActionListener(cc);
+		btnPlusMines.addActionListener(cc);
+		btnMoinsMines.addActionListener(cc);
 		btnValider.addActionListener(cc);
+
 	}
 
 	public JButton getBtnPlusLignes() { return btnPlusLignes; }
 	public JButton getBtnMoinsLignes() { return btnMoinsLignes; }
 	public JButton getBtnPlusColonnes() { return btnPlusColonnes; }
 	public JButton getBtnMoinsColonnes() { return btnMoinsColonnes; }
+	public JButton getBtnPlusMines() { return btnPlusMines; }
+	public JButton getBtnMoinsMines() { return btnMoinsMines; }
 	public JButton getbtnValider() { return btnValider; }
 
-	public void mettreAJourTexte(int l, int c){
+	public void mettreAJourTexte(int l, int c, int m){
 		this.texteLignes.setText("Lignes : " + l);
     	this.texteColonnes.setText("Colonnes : " + c);
+    	this.texteMines.setText("Mines : " + m);
 	}
 
 }
