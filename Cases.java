@@ -52,7 +52,7 @@ public void mettreAjourAffichage() {
     setBorderPainted(false);
 
     if (estminee) {
-        setText("bombe");
+        setText("💣");
         setBackground(Color.RED);
         return;  // ← on sort si mine
     }

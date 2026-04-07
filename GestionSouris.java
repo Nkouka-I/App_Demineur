@@ -17,7 +17,8 @@ public void mouseReleased(MouseEvent evenement) {
     if (evenement.getButton() == MouseEvent.BUTTON1) {
         if (!caseEcoutee.visibilite && caseEcoutee.etatMarqueur == 0) {
 
-            grille.propager(caseEcoutee.x, caseEcoutee.y);  // ← propagation
+            grille.propager(caseEcoutee.x, caseEcoutee.y);
+            grille.getFenetre().incrementerCoups();
 
             if (caseEcoutee.estminee) {
                 grille.reveleBombes();
@@ -31,6 +32,12 @@ public void mouseReleased(MouseEvent evenement) {
         if (!caseEcoutee.visibilite) {
             caseEcoutee.etatMarqueur = (caseEcoutee.etatMarqueur + 1) % 3;
             caseEcoutee.mettreAjourAffichage();
+
+            if (caseEcoutee.etatMarqueur == 1) {
+                grille.getFenetre().mettreAjourMines(-1);
+            } else if (caseEcoutee.etatMarqueur == 0) {
+                grille.getFenetre().mettreAjourMines(+1);
+            }
         }
     }
 }
