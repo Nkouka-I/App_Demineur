@@ -26,11 +26,18 @@ public class Cases extends JButton{
 		this.etatMarqueur=0;
 		this.x=x;
 		this.y=y;
-		setPreferredSize(new Dimension(40,40));
+		setPreferredSize(new Dimension(75,75));
 		setFont(new Font("sans-serif", Font.BOLD, 16));
 		setMargin(new Insets(0,0,0,0));
 		this.setOpaque(true);
         this.setBorderPainted(false);
+
+		// Alternance couleurs des cases
+		if ((x+y)%2 == 0){
+			this.setBackground(Style.VERT_FONCE);
+		}else{
+			this.setBackground(Style.VERT_CACTUS);
+		}
 	}
 
 	public Cases getcase(){
@@ -39,6 +46,12 @@ public class Cases extends JButton{
 
 	public void mettreAjourAffichage() { /* permet de changer l'image sur la case qui est en rapport avec l'etat de son marqueur*/
 	    if (visibilite == false) {
+			if ((x+y)%2 == 0){
+				this.setBackground(Style.VERT_FONCE);
+			}else{
+				this.setBackground(Style.VERT_CACTUS);
+			}
+
 	        if (etatMarqueur == 1) {
 	            setText("⚑"); /* mettre un drapeau sur la case*/
 	            setForeground(Style.ROUGE_DRAPEAU);
@@ -59,7 +72,13 @@ public class Cases extends JButton{
 	        setBackground(Style.ROUGE_DRAPEAU);
 	        return;  /* on sort si mine */
 	    }
-		setBackground(Style.SABLE_REVELE);
+
+		if ((x+y)%2 == 0){
+			setBackground(Style.SABLE_BASE);
+		}else{
+			setBackground(Style.SABLE_REVELE);
+		}
+
 		if (nbminesV==0){
 			setText("");
 		}else{

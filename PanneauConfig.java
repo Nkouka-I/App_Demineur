@@ -20,7 +20,7 @@ public class PanneauConfig extends JPanel{
 		this.fenetre = fenetre;
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setBackground(Style.SABLE_BASE);
+		this.setBackground(Style.SABLE_FOND);
 
 		//Init Boutons
 		int btnl = 50, btnh = 50;

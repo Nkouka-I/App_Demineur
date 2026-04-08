@@ -25,13 +25,6 @@ public class Grille extends JPanel {
 		for (int i=0;i<lignes;i++){
 			for (int y=0;y<colonnes;y++){
 				cases[i][y]= new Cases(i,y);   /* Création des cases*/
-
-				// Alternance : si (i+j) est pair -> Vert Foncé, sinon -> Vert clair
-				if ((i+y)%2 == 0){
-					cases[i][y].setBackground(Style.VERT_FONCE);
-				}else{
-					cases[i][y].setBackground(Style.VERT_CACTUS);
-				}
 				cases[i][y].addMouseListener(new GestionSouris(cases[i][y],this)); /* Puis les mettres sur ecoutes grace la class GestionSouris.java */  
 			}
 		}

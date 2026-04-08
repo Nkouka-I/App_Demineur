@@ -7,8 +7,9 @@ public class Style {
     public static final Color VERT_CLAIR = new Color(0xC7FAA1);  
     
     // État révélé
-    public static final Color SABLE_BASE = new Color(0xFFF5E3);  
-    public static final Color SABLE_REVELE = new Color(0xF3DB96);  
+    public static final Color SABLE_FOND = new Color(0xFFF5E3); 
+    public static final Color SABLE_BASE = new Color(0xe5c29f);  
+    public static final Color SABLE_REVELE = new Color(0xd7b899);  
 
     // Couleurs Chiffre
     public static final Color CHIFFRE_1 = new Color(0x3C661F);//Vert Forêt

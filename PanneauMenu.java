@@ -10,7 +10,7 @@ public class PanneauMenu extends JPanel{
 
 	public PanneauMenu(FenetrePrincipal fenetre){
 		this.fenetre = fenetre;
-		this.setBackground(Style.SABLE_BASE);
+		this.setBackground(Style.SABLE_FOND);
 
 		//Init Titre
 		this.titre = new JLabel("DÉMINEUR");
