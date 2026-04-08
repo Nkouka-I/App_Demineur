@@ -13,7 +13,7 @@ public class PanneauJeu extends JPanel{
         this.setBackground(Style.SABLE_BASE);
         this.mines=mines;
 
-        creerHUD();
+        creerHUD();//Creer le panneau Coups joués et Mines restantes
 
         this.grille = new Grille(lignes, colonnes, mines,this);
         this.add(grille.afficherGrille(), BorderLayout.CENTER);

@@ -29,6 +29,8 @@ public class Cases extends JButton{
 		setPreferredSize(new Dimension(40,40));
 		setFont(new Font("sans-serif", Font.BOLD, 16));
 		setMargin(new Insets(0,0,0,0));
+		this.setOpaque(true);
+        this.setBorderPainted(false);
 	}
 
 	public Cases getcase(){
@@ -49,10 +51,8 @@ public class Cases extends JButton{
 	        return;  /* on sort si pas visible */
 	    }
 
-	     
 	    setEnabled(true);
 	    setFocusPainted(false);
-	    setBorderPainted(false);
 
 	    if (estminee) {
 	        setText("💣");
