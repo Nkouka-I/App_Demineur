@@ -9,11 +9,15 @@ public class Cases extends JButton{
 	protected int etatMarqueur;
 	protected int x;
 	protected int y;
-	private static final Color[] couleurs ={Color.BLUE,new Color(0,128,0),Color.RED,new Color(0,0,128),new Color(128,0,0),new Color(0,128,128),Color.BLACK,new Color(128,128,128)};
-
-	
-
-
+	private static final Color[] couleurs ={Style.CHIFFRE_1,
+											Style.CHIFFRE_2, 
+											Style.CHIFFRE_3,
+											Style.CHIFFRE_4,
+											Style.CHIFFRE_5,
+											Style.CHIFFRE_6,
+											Style.CHIFFRE_7,
+											Style.CHIFFRE_8
+											};
 
 	public Cases(int x,int y){
 		this.estminee=false;
@@ -23,52 +27,47 @@ public class Cases extends JButton{
 		this.x=x;
 		this.y=y;
 		setPreferredSize(new Dimension(40,40));
-		setFont(new Font("Arial",Font.BOLD,16));
+		setFont(new Font("sans-serif", Font.BOLD, 16));
 		setMargin(new Insets(0,0,0,0));
-		  
-   
 	}
+
 	public Cases getcase(){
 		return this;
 	}
-public void mettreAjourAffichage() {
-    if (visibilite == false) {
-        setBackground(null);
-        if (etatMarqueur == 1) {
-            setText("⚑");
-            setForeground(Color.RED);
-        } else if (etatMarqueur == 2) {
-            setText("?");
-            setForeground(Color.ORANGE);
-        } else {
-            setText("");
-        }
-        return;  // ← on sort si pas visible
-    }
 
-     
-    setEnabled(true);
-    setFocusPainted(false);
-    setBorderPainted(false);
+	public void mettreAjourAffichage() {
+	    if (visibilite == false) {
+	        if (etatMarqueur == 1) {
+	            setText("⚑");
+	            setForeground(Style.ROUGE_DRAPEAU);
+	        } else if (etatMarqueur == 2) {
+	            setText("?");
+	            setForeground(Color.WHITE);
+	        } else {
+	            setText("");
+	        }
+	        return;  // ← on sort si pas visible
+	    }
 
-    if (estminee) {
-        setText("💣");
-        setBackground(Color.RED);
-        return;  // ← on sort si mine
-    }
-		setBackground(new Color(128,128,128));
+	     
+	    setEnabled(true);
+	    setFocusPainted(false);
+	    setBorderPainted(false);
+
+	    if (estminee) {
+	        setText("💣");
+	        setBackground(Style.ROUGE_DRAPEAU);
+	        return;  // ← on sort si mine
+	    }
+		setBackground(Style.SABLE_REVELE);
 		if (nbminesV==0){
 			setText("");
 		}else{
 			setText(String.valueOf(nbminesV));		
 			setForeground(couleurs[nbminesV-1]);
 		}
-
-
-	
-
+		repaint();
 	}
-
 }
 
 

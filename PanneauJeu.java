@@ -4,29 +4,32 @@ import java.awt.*;
 public class PanneauJeu extends JPanel{
     private FenetrePrincipal fenetre;
     private Grille grille;
-    private JLabel labelMines;
-    private JLabel labelCoups;
-    private int nbCoups = 0;
-    private int mines;
+    private JLabel labelMines, labelCoups;
+    private int nbCoups = 0, mines;
 
     public PanneauJeu(FenetrePrincipal fenetre, int lignes, int colonnes, int mines){
         this.fenetre = fenetre;
         this.setLayout(new BorderLayout());
+        this.setBackground(Style.SABLE_BASE);
         this.mines=mines;
 
-        JPanel panneauHaut = new JPanel(new FlowLayout());
+        creerHUD();
+
+        this.grille = new Grille(lignes, colonnes, mines,this);
+        this.add(grille.afficherGrille(), BorderLayout.CENTER);
+
+    }  
+    private void creerHUD(){
+        JPanel hud = new JPanel(new FlowLayout());
+
         labelMines = new JLabel("Mines restantes : " + mines);
         labelCoups = new JLabel("Coups joués : 0");
         labelMines.setFont(new Font("Arial", Font.BOLD, 14));
         labelCoups.setFont(new Font("Arial", Font.BOLD, 14));
-        panneauHaut.add(labelMines);
-        panneauHaut.add(labelCoups);
-        add(panneauHaut, BorderLayout.NORTH);
-
-        grille = new Grille(lignes, colonnes, mines,this);
-        add(grille.afficherGrille(), BorderLayout.CENTER);
-
-    }  
+        hud.add(labelMines);
+        hud.add(labelCoups);
+        this.add(hud, BorderLayout.NORTH);
+    }
         
 
     public void incrementerCoups() {

@@ -4,8 +4,7 @@ import java.awt.GridLayout;
 import java.util.Random;
 
 public class Grille extends JPanel {
-	private int lignes;
-	private int colonnes;
+	private int lignes, colonnes;
 	private Cases[][] cases;
 	private PanneauJeu fenetre;
 
@@ -95,10 +94,10 @@ public class Grille extends JPanel {
     	for (int i = 0; i < lignes; i++) {
         	for (int j = 0; j < colonnes; j++) {
             	panel.add(cases[i][j]);
-        }
-    }
-    return panel;
-}
+	        }
+	    }
+    	return panel;
+	}
 
 	
 public void propager(int x, int y) {
