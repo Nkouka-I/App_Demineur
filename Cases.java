@@ -35,10 +35,10 @@ public class Cases extends JButton{
 		return this;
 	}
 
-	public void mettreAjourAffichage() {
+	public void mettreAjourAffichage() { /* permet de changer l'image sur la case qui est en rapport avec l'etat de son marqueur*/
 	    if (visibilite == false) {
 	        if (etatMarqueur == 1) {
-	            setText("⚑");
+	            setText("⚑"); /* mettre un drapeau sur la case*/
 	            setForeground(Style.ROUGE_DRAPEAU);
 	        } else if (etatMarqueur == 2) {
 	            setText("?");
@@ -46,7 +46,7 @@ public class Cases extends JButton{
 	        } else {
 	            setText("");
 	        }
-	        return;  // ← on sort si pas visible
+	        return;  /* on sort si pas visible */
 	    }
 
 	     
@@ -57,7 +57,7 @@ public class Cases extends JButton{
 	    if (estminee) {
 	        setText("💣");
 	        setBackground(Style.ROUGE_DRAPEAU);
-	        return;  // ← on sort si mine
+	        return;  /* on sort si mine */
 	    }
 		setBackground(Style.SABLE_REVELE);
 		if (nbminesV==0){
