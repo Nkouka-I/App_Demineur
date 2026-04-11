@@ -1,20 +1,19 @@
+
 import java.io.*;
 
 public class SauvegardePartie {
-
     private static final String FICHIER_SAUVEGARDE = "sauvegarde.txt";
-
     private int lignes, colonnes, nbCoups, minesRestantes;
     private boolean[][] estMinee, visibilite;
     private int[][] etatMarqueur, nbMinesVoisines;
 
-   /* construction a partir de la partie en cours */
+    /* construction a partir de la partie en cours */
     public SauvegardePartie(Grille grille, int nbCoups, int minesRestantes) {
         this.lignes = grille.getLignes();
         this.colonnes = grille.getcolonnes();
         this.nbCoups = nbCoups;
         this.minesRestantes = minesRestantes;
-
+        
         estMinee = new boolean[lignes][colonnes];
         visibilite = new boolean[lignes][colonnes];
         etatMarqueur = new int[lignes][colonnes];
@@ -33,19 +32,18 @@ public class SauvegardePartie {
 
     private SauvegardePartie() {}
 
-    /* fluc d'octets pour l'écriture*/
+    /* flux d'octets pour l'écriture */
     public boolean sauvegarder() {
         try {
             FileOutputStream fos = new FileOutputStream(FICHIER_SAUVEGARDE);
-            DataOutputStream dos = new DataOutputStream(fos);
-
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            DataOutputStream dos = new DataOutputStream(bos);
             
             dos.writeInt(lignes);
             dos.writeInt(colonnes);
             dos.writeInt(nbCoups);
             dos.writeInt(minesRestantes);
 
-        
             for (int i = 0; i < lignes; i++) {
                 for (int j = 0; j < colonnes; j++) {
                     dos.writeBoolean(estMinee[i][j]);
@@ -54,60 +52,55 @@ public class SauvegardePartie {
                     dos.writeInt(nbMinesVoisines[i][j]);
                 }
             }
-
+            
             dos.close();
-            fos.close();
             return true;
-
         } catch (IOException e) {
             System.err.println("Erreur sauvegarde : " + e.getMessage());
             return false;
         }
     }
 
-   /* chargement des flux d'octets pour la lecture*/
+    /* chargement des flux d'octets pour la lecture */
     public static SauvegardePartie charger() {
         File fichier = new File(FICHIER_SAUVEGARDE);
         if (!fichier.exists()) return null;
 
         try {
+            // Utilisation d'un Buffer pour accélérer la lecture
             FileInputStream fis = new FileInputStream(fichier);
-            DataInputStream dis = new DataInputStream(fis);
-
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            DataInputStream dis = new DataInputStream(bis);
+            
             SauvegardePartie s = new SauvegardePartie();
-
-            // En-tête
-            s.lignes         = dis.readInt();
-            s.colonnes       = dis.readInt();
-            s.nbCoups        = dis.readInt();
+            
+            s.lignes = dis.readInt();
+            s.colonnes = dis.readInt();
+            s.nbCoups = dis.readInt();
             s.minesRestantes = dis.readInt();
 
-            s.estMinee        = new boolean[s.lignes][s.colonnes];
-            s.visibilite      = new boolean[s.lignes][s.colonnes];
-            s.etatMarqueur    = new int[s.lignes][s.colonnes];
+            s.estMinee = new boolean[s.lignes][s.colonnes];
+            s.visibilite = new boolean[s.lignes][s.colonnes];
+            s.etatMarqueur = new int[s.lignes][s.colonnes];
             s.nbMinesVoisines = new int[s.lignes][s.colonnes];
 
-            // Cases — même ordre que l'écriture
             for (int i = 0; i < s.lignes; i++) {
                 for (int j = 0; j < s.colonnes; j++) {
-                    s.estMinee[i][j]        = dis.readBoolean();
-                    s.visibilite[i][j]      = dis.readBoolean();
-                    s.etatMarqueur[i][j]    = dis.readInt();
+                    s.estMinee[i][j] = dis.readBoolean();
+                    s.visibilite[i][j] = dis.readBoolean();
+                    s.etatMarqueur[i][j] = dis.readInt();
                     s.nbMinesVoisines[i][j] = dis.readInt();
                 }
             }
-
-            dis.close();
-            fis.close();
+            
+            dis.close(); // Ferme aussi bis et fis
             return s;
-
         } catch (IOException e) {
             System.err.println("Erreur chargement : " + e.getMessage());
             return null;
         }
     }
 
-    
     public static void supprimer() {
         File f = new File(FICHIER_SAUVEGARDE);
         if (f.exists()) f.delete();
