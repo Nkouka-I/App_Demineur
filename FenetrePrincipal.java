@@ -29,8 +29,21 @@ public class FenetrePrincipal extends JFrame{
     }
 
     public void afficherJeu(int lignes, int colonnes, int mines) {
+        SauvegardePartie.supprimer();
         this.getContentPane().removeAll();
         this.add(new PanneauJeu(this, lignes, colonnes, mines));
+        this.revalidate();
+        this.repaint();
+        this.pack();
+    }
+    public void afficherJeuSauvegarde() {
+        SauvegardePartie sauvegarde = SauvegardePartie.charger();
+        if (sauvegarde == null) {
+            JOptionPane.showMessageDialog(this, "Aucune sauvegarde trouvée.", "Reprendre", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        this.getContentPane().removeAll();
+        this.add(new PanneauJeu(this, sauvegarde));
         this.revalidate();
         this.repaint();
         this.pack();

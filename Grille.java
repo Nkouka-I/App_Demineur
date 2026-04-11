@@ -8,6 +8,8 @@ public class Grille extends JPanel {
 	private Cases[][] cases;
 	private PanneauJeu fenetre;
 
+
+	/* Constructeur de la grille pour une nouvelle partie*/
 	public Grille(int lignes,int colonnes,int nbmines,PanneauJeu fenetre){
 		this.fenetre=fenetre;
 		this.lignes=lignes;
@@ -18,6 +20,30 @@ public class Grille extends JPanel {
 		calculMinesV(); /* Calcul des mines voisines de la case decouverte */
 
 	}
+	/* Constructeur de la grille pour une partie sauvegarde d'une ancienne partie */
+	public Grille(SauvegardePartie sauvegarde, PanneauJeu fenetre) {
+		this.fenetre = fenetre;
+		this.lignes = sauvegarde.getLignes();
+		this.colonnes = sauvegarde.getColonnes();
+		this.cases = new Cases[lignes][colonnes];
+		boolean[][] estMinee = sauvegarde.getEstMinee();
+		boolean[][] visibilite = sauvegarde.getVisibilite();
+		int[][] etatMarqueur = sauvegarde.getEtatMarqueur();
+		int[][] nbMinesVoisines = sauvegarde.getNbMinesVoisines();
+		for (int i = 0; i < lignes; i++) {
+			for (int j = 0; j < colonnes; j++) {
+				Cases c = new Cases(i, j);
+				c.estminee = estMinee[i][j];
+				c.visibilite = visibilite[i][j];
+				c.etatMarqueur = etatMarqueur[i][j];
+				c.nbminesV = nbMinesVoisines[i][j];
+				c.mettreAjourAffichage();
+				c.addMouseListener(new GestionSouris(c, this));
+				cases[i][j] = c;
+			}
+		}
+	}
+
 	public PanneauJeu getFenetre(){
 		return fenetre;
 	}
@@ -117,6 +143,10 @@ public class Grille extends JPanel {
     	cases[x][y].visibilite = true;
     	cases[x][y].mettreAjourAffichage();   
 	}	
+	/* getters*/
+	public Cases getCase(int i, int j) { return cases[i][j]; }
+
+	
 
 	public int getLignes(){
 		return lignes;
