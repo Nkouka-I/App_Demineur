@@ -7,13 +7,13 @@ public class ConsommateurConfig implements ActionListener{
     private FenetrePrincipal fenetre;
     private int nbLignes, nbColonnes, nbMines;
 
-	public ConsommateurConfig(PanneauConfig panneau, FenetrePrincipal fenetre, int l, int c, int m) {
+	public ConsommateurConfig(PanneauConfig panneau, FenetrePrincipal fenetre, int lignes, int colonnes, int mines) {
         super();
         this.panneau = panneau;
         this.fenetre = fenetre;
-        this.nbLignes = l;
-        this.nbColonnes = c;
-        this.nbMines = m;
+        this.nbLignes = lignes;
+        this.nbColonnes = colonnes;
+        this.nbMines = mines;
     }
 
     @Override

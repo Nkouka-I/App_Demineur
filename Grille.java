@@ -44,9 +44,6 @@ public class Grille extends JPanel {
 		}
 	}
 
-	public PanneauJeu getFenetre(){
-		return fenetre;
-	}
 	public void initCases(){
 		for (int i=0;i<lignes;i++){
 			for (int y=0;y<colonnes;y++){
@@ -72,30 +69,30 @@ public class Grille extends JPanel {
 
 	public void calculMinesV(){
 		for (int i=0;i<lignes;i++){       /* Parcour des Cases*/
-			for (int y=0;y<colonnes;y++){
+			for (int j=0;j<colonnes;j++){
 				int cpt=0;
-				for (int u=-1;u<=1;u++){     /* Parcours des cases voisines celles parcourue sont celles qui sont autour de celle au centre */
+				for (int u=-1;u<=1;u++){     /* Parcours des 8 cases autours*/
 					for (int v=-1;v<=1;v++){
 						int voisinI=i+u;
-						int voisinY=y+v;
-						if ((voisinI>=0 && voisinI<lignes) && (voisinY>=0 && voisinY<colonnes)){
-							if (cases[voisinI][voisinY].estminee){
+						int voisinJ=j+v;
+						if ((voisinI>=0 && voisinI<lignes) && (voisinJ>=0 && voisinJ<colonnes)){
+							if (cases[voisinI][voisinJ].estminee){
 								cpt++;
 							}
 						}
 					}				
-				}cases[i][y].nbminesV=cpt;
+				}cases[i][j].nbminesV=cpt;
 			}
 		}
 
 	}
 
 	public void reveleBombes(){     /*revele les bombes en cas de perte */
-		for (int i=0;i<lignes;i++){
+		for (int i=0;i<lignes;i++){ /* Parcour des cases*/
 			for(int j=0;j<colonnes;j++){
-				if (cases[i][j].estminee){
+				if (cases[i][j].estminee){ /* si la case est une bombe*/
 					cases[i][j].visibilite=true;
-					cases[i][j].mettreAjourAffichage();  
+					cases[i][j].mettreAjourAffichage();  /* changer affichage*/
 				}
 			}
 		}
@@ -103,8 +100,8 @@ public class Grille extends JPanel {
 
 	public boolean verifVictoire(){
 		for (int i=0;i<lignes;i++){   
-			for (int y=0;y<colonnes;y++){
-				if (cases[i][y].estminee==false && cases[i][y].visibilite==false){ /*Parcour lignes colonnes pour trouver une case qui doit etre miner*/
+			for (int j=0;j<colonnes;j++){
+				if (cases[i][j].estminee==false && cases[i][j].visibilite==false){ /*Parcour lignes colonnes pour trouver une case qui doit etre miner*/
 					return false;
 				}
 			}
@@ -112,12 +109,12 @@ public class Grille extends JPanel {
 
 	}
 
-	public JPanel afficherGrille() {
+	public JPanel afficherGrille() { 
     	JPanel panel = new JPanel();
     	panel.setLayout(new GridLayout(lignes, colonnes));
     	for (int i = 0; i < lignes; i++) {
         	for (int j = 0; j < colonnes; j++) {
-            	panel.add(cases[i][j]);
+            	panel.add(cases[i][j]); /*Affichage cases*/
 	        }
 	    }
     	return panel;
@@ -144,7 +141,12 @@ public class Grille extends JPanel {
     	cases[x][y].mettreAjourAffichage();   
 	}	
 	/* getters*/
-	public Cases getCase(int i, int j) { return cases[i][j]; }
+	public Cases getCase(int i, int j){
+		return cases[i][j];
+	}
+	public PanneauJeu getFenetre(){
+		return fenetre;
+	}
 
 	
 

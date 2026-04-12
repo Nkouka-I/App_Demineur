@@ -1,6 +1,6 @@
 JC = javac
 JVM = java
-MAIN = MainTest
+MAIN = Main
 SRC = $(wildcard *.java)
 
 all: $(SRC)

@@ -56,7 +56,13 @@ public class PanneauMenu extends JPanel {
         btnQuitter.addActionListener(cm);
     }
 
-    public JButton getBtnReprendre() { return btnReprendre; }
-    public JButton getBtnNewGame()   { return btnNewGame; }
-    public JButton getBtnQuitter()   { return btnQuitter; }
+    public JButton getBtnReprendre(){
+        return btnReprendre;
+    }
+    public JButton getBtnNewGame(){
+        return btnNewGame;
+    }
+    public JButton getBtnQuitter(){
+        return btnQuitter;
+    }
 }

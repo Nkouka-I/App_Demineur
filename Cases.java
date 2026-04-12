@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.*;
+
 
 public class Cases extends JButton{
 	protected boolean estminee;
@@ -18,7 +18,7 @@ public class Cases extends JButton{
 											Style.CHIFFRE_7,
 											Style.CHIFFRE_8
 											};
-
+	/* Constructeur des cases individuelles contenues dans la grille*/
 	public Cases(int x,int y){
 		this.estminee=false;
 		this.nbminesV=0;
@@ -32,7 +32,7 @@ public class Cases extends JButton{
 		this.setOpaque(true);
         this.setBorderPainted(false);
 
-		// Alternance couleurs des cases
+		/* Alternance couleurs des cases*/
 		if ((x+y)%2 == 0){
 			this.setBackground(Style.VERT_FONCE);
 		}else{
@@ -51,7 +51,6 @@ public class Cases extends JButton{
 			}else{
 				this.setBackground(Style.VERT_CACTUS);
 			}
-
 	        if (etatMarqueur == 1) {
 	            setText("⚑"); /* mettre un drapeau sur la case*/
 	            setForeground(Style.ROUGE_DRAPEAU);

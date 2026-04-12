@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class GestionSouris extends MouseAdapter {
     private Cases caseEcoutee;
     private Grille grille;
-
+    /* Constructeur pour mettre une case sur ecoute*/
     public GestionSouris(Cases caseEcoutee, Grille grille) {
         this.caseEcoutee = caseEcoutee;
         this.grille = grille;
@@ -13,17 +13,17 @@ public class GestionSouris extends MouseAdapter {
 
     @Override /* Listener permettant d'écouter la souris afin de réaliser les actions*/
     public void mouseReleased(MouseEvent evenement) {
-        if (evenement.getButton() == MouseEvent.BUTTON1) {
-            if (!caseEcoutee.visibilite && caseEcoutee.etatMarqueur == 0) {
+        if (evenement.getButton() == MouseEvent.BUTTON1) {  
+            if (!caseEcoutee.visibilite && caseEcoutee.etatMarqueur == 0) { /*Condition pour appeller la méthode de propagation*/
 
                 grille.propager(caseEcoutee.x, caseEcoutee.y);
                 grille.getFenetre().incrementerCoups();
 
                 if (caseEcoutee.estminee) {
-                    grille.reveleBombes();
-                    SauvegardePartie.supprimer();
+                    grille.reveleBombes();/*affiche toutes les bombes*/
+                    SauvegardePartie.supprimer();/* Supprime la sauvegarde car partie perdue*/
                     JOptionPane.showMessageDialog(null, "Perdu !");
-                    grille.getFenetre().getFenetrePrincipal().afficherMenu();
+                    grille.getFenetre().getFenetrePrincipal().afficherMenu(); /* retour au menu*/
                     return;
                 }
                 if (grille.verifVictoire()) {
@@ -39,7 +39,7 @@ public class GestionSouris extends MouseAdapter {
             PanneauJeu panneau = grille.getFenetre();
 
             if (etatPrecedent == 0) {
-                if (panneau.peutPoserDrapeau()) { // On demande l'autorisation au panneau
+                if (panneau.peutPoserDrapeau()) { /* On demande l'autorisation au panneau*/
                     caseEcoutee.etatMarqueur = 1;
                     panneau.mettreAjourMines(-1);
                 }else {
